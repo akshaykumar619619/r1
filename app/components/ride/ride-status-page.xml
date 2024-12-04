@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Ride Status" class="action-bar">
+        <NavigationButton visibility="collapsed" />
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ContentView row="0">
+            <ns:MapView
+                latitude="{{ currentLocation.latitude }}"
+                longitude="{{ currentLocation.longitude }}"
+                zoom="15"
+                bearing="0"
+                tilt="0"
+                padding="0"
+                mapAnimationsEnabled="true"/>
+        </ContentView>
+
+        <StackLayout row="1" class="p-4 bg-white">
+            <Label text="{{ statusMessage }}" class="text-lg font-bold mb-2" />
+            <GridLayout columns="auto, *" class="mb-4" visibility="{{ driverInfo ? 'visible' : 'collapsed' }}">
+                <Image col="0" src="{{ driverInfo.profileImage }}" class="w-16 h-16 rounded-full" />
+                <StackLayout col="1" class="ml-4">
+                    <Label text="{{ driverInfo.name }}" class="font-bold" />
+                    <Label text="{{ driverInfo.vehicleDetails.model }} - {{ driverInfo.vehicleDetails.number }}" />
+                </StackLayout>
+            </GridLayout>
+            <Button text="Cancel Ride" tap="{{ onCancelRide }}" class="btn btn-danger" />
+        </StackLayout>
+    </GridLayout>
+</Page>

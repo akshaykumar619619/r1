@@ -1,0 +1,38 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Profile" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Image src="{{ user.profileImage }}" class="w-32 h-32 rounded-full mx-auto mb-4" />
+            
+            <StackLayout class="form">
+                <Label text="Name" class="label" />
+                <TextField text="{{ user.name }}" class="input" />
+                
+                <Label text="Email" class="label" />
+                <TextField text="{{ user.email }}" class="input" />
+                
+                <Label text="Phone" class="label" />
+                <TextField text="{{ user.phone }}" class="input" />
+                
+                <StackLayout class="stats p-4 m-y-4">
+                    <GridLayout columns="*, *" rows="auto" class="text-center">
+                        <StackLayout col="0">
+                            <Label text="{{ user.rides || 0 }}" class="text-xl font-bold" />
+                            <Label text="Total Rides" class="text-gray-600" />
+                        </StackLayout>
+                        <StackLayout col="1">
+                            <Label text="{{ user.rating || '0.0' }}" class="text-xl font-bold" />
+                            <Label text="Rating" class="text-gray-600" />
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+
+                <Button text="Save Changes" tap="{{ onSave }}" class="btn btn-primary m-t-4" />
+                <Button text="Logout" tap="{{ onLogout }}" class="btn btn-outline m-t-2" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
